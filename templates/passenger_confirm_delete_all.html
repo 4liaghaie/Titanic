@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Confirm Deletion of All Passengers</h2>
+<form method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete all passengers?</p>
+    <button type="submit">Yes, delete all</button>
+    <a href="{% url 'passenger_list' %}">Cancel</a>
+</form>
+{% endblock %}

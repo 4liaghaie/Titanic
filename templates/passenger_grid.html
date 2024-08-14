@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Passenger Data Grid</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>Pclass</th>
+            <th>Survived</th>
+            <th>Siblings/Spouse</th>
+            <th>Parents/Children</th>
+            <th>Ticket</th>
+            <th>Fare</th>
+            <th>Cabin</th>
+            <th>Embarked</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for passenger in passengers %}
+        <tr>
+            <td>{{ passenger.passenger_id }}</td>
+            <td>{{ passenger.name }}</td>
+            <td>{{ passenger.sex }}</td>
+            <td>{{ passenger.age }}</td>
+            <td>{{ passenger.pclass }}</td>
+            <td>{{ passenger.survived }}</td>
+            <td>{{ passenger.sibsp }}</td>
+            <td>{{ passenger.parch }}</td>
+            <td>{{ passenger.ticket }}</td>
+            <td>{{ passenger.fare }}</td>
+            <td>{{ passenger.cabin }}</td>
+            <td>{{ passenger.embarked }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add or Edit Passenger</h2>
+<form method="post" action="{% if form.instance.pk %}{% url 'passenger_update' form.instance.pk %}{% else %}{% url 'passenger_create' %}{% endif %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    
+    <label for="passenger_dropdown">Select Passenger:</label>
+    <select id="passenger_dropdown" name="passenger_id">
+        <option value="">--Select a Passenger--</option>
+        {% for passenger in passengers %}
+        <option value="{{ passenger.passenger_id }}" {% if form.instance.pk == passenger.passenger_id %}selected{% endif %}>{{ passenger.name }}</option>
+        {% endfor %}
+    </select>
+
+    <button type="submit">Save</button>
+</form>
+
+{% endblock %}

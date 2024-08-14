@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Titanic CRUD{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Titanic Passenger Management</h1>
+        <nav>
+            <ul>
+                <li><a href="{% url 'passenger_list' %}">Passenger List</a></li>
+                <li><a href="{% url 'upload_file' %}">Upload</a></li>
+                <li><a href="{% url 'passenger_grid' %}">Passenger Grid</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Content from child templates will be rendered here -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Titanic CRUD Application</p>
+    </footer>
+</body>
+</html>

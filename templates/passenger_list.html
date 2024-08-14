@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Add  Passenger</h2>
+<form method="post" action="{% if form.instance.pk %}{% url 'passenger_update' form.instance.pk %}{% else %}{% url 'passenger_create' %}{% endif %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<h2>Delete All Passengers</h2>
+<form method="post" action="{% url 'delete_all_passengers' %}">
+    {% csrf_token %}
+    <button type="submit" onclick="return confirm('Are you sure you want to delete all passengers?');">Delete All</button>
+</form>
+<h2>Passenger List</h2>
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>Age</th>
+            <th>Pclass</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for passenger in passengers %}
+        <tr>
+            <td>{{ passenger.passenger_id }}</td>
+            <td>{{ passenger.name }}</td>
+            <td>{{ passenger.sex }}</td>
+            <td>{{ passenger.age }}</td>
+            <td>{{ passenger.pclass }}</td>
+            <td>
+                <a href="{% url 'passenger_update' passenger.passenger_id %}">Edit</a>
+                <a href="{% url 'passenger_delete' passenger.passenger_id %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+
+{% endblock %}
